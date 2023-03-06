@@ -1,0 +1,94 @@
+FB CREATE TABLE Patient (
+email varchar(50) PRIMARY KEY, phone_number number,
+name varchar(50) NOT NULL, address varchar(60) NOT NULL, gender VARCHAR(20) NOT NULL
+);
+INSERT INTO Patient VALUES ('luffy@gmail.com',91234490,'luffy','Tamil Nadu', 'male');
+INSERT INTO Patient VALUES
+('nami@gmail.com',73328188,'nami','Karnataka', 'female');
+INSERT INTO Patient VALUES
+('zoro@gmail.com',79147101,'zoro','Gujarat', 'male'); select*from Patient
+describe patient
+
+
+
+CREATE TABLE Patient_Medical_History (
+id int PRIMARY KEY, padate DATE NOT NULL,
+conditions VARCHAR(100) NOT NULL,
+ 
+surgeries VARCHAR(100) NOT NULL, medication VARCHAR(100) NOT NULL
+);
+INSERT INTO Patient_Medical_History VALUES (1,sysdate,'Pain in abdomen','Heart Surgery','dolo650');
+INSERT INTO Patient_Medical_History VALUES (3,sysdate,'Indigestion','none','none');
+INSERT INTO Patient_Medical_History VALUES (2,sysdate,'Body Pains','none','Iodex');
+select * from Patient_Medical_History
+select * from Patient_Medical_History order by id describe Patient_Medical_History
+
+
+
+CREATE TABLE Doctor (
+email varchar(50) PRIMARY KEY, gender varchar(20) NOT NULL, password varchar(30) NOT NULL, name varchar(50) NOT NULL
+);
+INSERT INTO Doctor VALUES ('sagar123@gmail.com', 'male', 'Vidya', 'v.v.v.sagar');
+INSERT INTO Doctor VALUES ('sandy369@gmail.com', 'male', 'Sandeep', 'v.v.sandy');
+INSERT INTO Doctor VALUES ('vamsi14@gmail.com', 'male', 'vami', 'G.vamsi');
+INSERT INTO Doctor VALUES ('robin14@gmail.com', 'female', 'rob', 'N.robin');
+ 
+select * from Doctor describe Doctor
+
+
+
+CREATE TABLE Schedule (
+id int NOT NULL,
+start_time varchar(20) NOT NULL, end_time varchar(20) NOT NULL, breaktime varchar(20) NOT NULL, day varchar(20) NOT NULL, PRIMARY KEY ( id)
+);
+INSERT INTO Schedule VALUES ('001','08:00','17:00','12:00','Monday');
+INSERT INTO Schedule VALUES ('003','09:00','18:00','12:00','Wednesday');
+INSERT INTO Schedule VALUES ('002','09:00','18:00','12:00','Thursday'); INSERT INTO Schedule VALUES ('003','09:00','18:00','12:00','Friday'); INSERT INTO Schedule VALUES ('002','09:00','18:00','12:00','Saturday'); INSERT INTO Schedule VALUES ('004','10:00','16:00','12:00','Sunday');
+select * from Schedule
+select * from Schedule order by id describe Schedule
+
+
+
+CREATE TABLE doc_Schedules( sched int NOT NULL,
+ 
+doctor varchar(50) NOT NULL,
+FOREIGN KEY (sched) REFERENCES Schedule (id) ON DELETE CASCADE,
+FOREIGN KEY (doctor) REFERENCES Doctor (email) ON DELETE CASCADE,
+PRIMARY KEY (sched, doctor)
+);
+insert into doc_Schedules values(001,'sagar123@gmail.com') insert into doc_Schedules values(002,'sandy369@gmail.com') insert into doc_Schedules values(003,'vamsi14@gmail.com') insert into doc_Schedules values(004,'robin14@gmail.com') select * from doc_schedules
+describe doc_schedules
+
+
+
+CREATE TABLE Appointment (
+id int PRIMARY KEY, apdate DATE NOT NULL,
+starttime varchar(15) not null , endtime varchar(15) not null, status varchar(15) NOT NULL
+);
+INSERT INTO Appointment VALUES (1, sysdate, '09:00' , '10:00', 'Done'); INSERT INTO Appointment VALUES (2, sysdate, '10:00' , '11:00', 'Done'); INSERT INTO Appointment VALUES (3, sysdate, '14:00' , '15:00', 'Done'); select * from Appointment
+ 
+describe Appointment
+
+
+CREATE TABLE Patients_Appointments( patient varchar(50) NOT NULL,
+appt int NOT NULL,
+concerns varchar(40) NOT NULL, symptoms varchar(40) NOT NULL,
+FOREIGN KEY (patient) REFERENCES Patient (email) ON DELETE CASCADE,
+FOREIGN KEY (appt) REFERENCES Appointment (id) ON DELETE CASCADE,
+PRIMARY KEY (patient, appt)
+);
+INSERT INTO Patients_Appointments VALUES ('luffy@gmail.com',1, 'none', 'itchy throat');
+INSERT INTO Patients_Appointments VALUES ('nami@gmail.com',2, 'infection', 'fever');
+INSERT INTO Patients_Appointments VALUES ('zoro@gmail.com',3, 'nausea', 'fever');
+select * from Patients_Appointments describe Patients_Appointments
+
+
+
+CREATE TABLE PatientsFillHistory( patient varchar(50) NOT NULL, history int NOT NULL,
+FOREIGN KEY (patient) REFERENCES Patient (email) ON DELETE CASCADE,
+ 
+FOREIGN KEY (history) REFERENCES Patient_Medical_History (id) ON DELETE CASCADE,
+PRIMARY KEY (history)
+);
+INSERT INTO PatientsFillHistory VALUES ('luffy@gmail.com', 1); INSERT INTO PatientsFillHistory VALUES ('nami@gmail.com', 2); INSERT INTO PatientsFillHistory VALUES ('zoro@gmail.com', 3); select * from PatientsFillHistory
+describe PatientsFillHistory
