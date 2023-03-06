@@ -1,0 +1,18 @@
+•	alter table patient add(password number)
+•	delete from patent where name = zoro;
+•	INSERT INTO PatientsFillHistory VALUES ('zoro@gmail.com', 3);
+•	update patient set phone_number ='54717481' where name = 'zoro'
+•	SELECT id from Schedule natural JOIN doc_schedules where id
+=001
+•	DELETE FROM patent WHERE NAME='zoro';
+•	drop table Appointment
+•	UPDATE doctor SET EMAIL='SANDEEP369@gmail.COM' WHERE name ='v.v.sandy';
+•	CREATE VIEW Doctor112 AS SELECT email,name FROM doctor WHERE password ='Vidya';
+•	insert into doc_Schedules values(001,'sagar123@gmail.com')
+•	ALTER TABLE Appointment RENAME TO Appointments;
+•	INSERT INTO Appointment VALUES (3, sysdate, '14:00' , '15:00', 'Done');
+•	INSERT INTO Doctor VALUES ('sagar123@gmail.com', 'male', 'Vidya', 'v.v.v.sagar');
+•	SELECT EMAIL FROM DOCTOR UNION SELECT DOCTOR FROM doc_Schedules
+•	SELECT ID FROM Appointment INTERSECT SELECT ID FROM Patients_Appointments
+•	INSERT INTO Patient_Medical_History VALUES (2,sysdate,'Body Pains','none','Iodex');
+•	TRUNCATE TABLE DOCTOR;
