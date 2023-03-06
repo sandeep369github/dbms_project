@@ -1,0 +1,10 @@
+declare
+id int PRIMARY KEY ; apdate varchar(15); starttime varchar(15) ; endtime varchar(15) ; status varchar(15) ;
+
+procedure Appointment(i in int, f in varchar, e in varchar, z in varchar, v in varchar) is
+begin
+insert into Appointment(‘i’,’f’,’e’,'z','v'); end ;
+begin id:=:id;
+apdate:=:apdate; starttime:=:starttime; endtime:=:endtime; status :=:status
+update_ Appointment(‘id’,’apdate’,’starttime’,'endtime','status');
+
